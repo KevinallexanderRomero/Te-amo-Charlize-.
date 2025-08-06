@@ -78,4 +78,45 @@
       te amo Charlize
     </div>
   </div>
-  <img id="cursor" class="heart-cursor" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmY2OWI0IiBkPSJNNDcuNiAyNUMyNS4xIDI1IDcgNDMuMSA3IDY1LjZDNyA4OC4xIDI0LjMgMTI3IDkzLjUgMTU3LjVjNjkuMiAzMC41IDE0Ni4zIDY0LjEgMTYxLjUgODQuMSAxNS4
+  <img id="cursor" class="heart-cursor" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmY2OWI0IiBkPSJNNDcuNiAyNUMyNS4xIDI1IDcgNDMuMSA3IDY1LjZDNyA4OC4xIDI0LjMgMTI3IDkzLjUgMTU3LjVjNjkuMiAzMC41IDE0Ni4zIDY0LjEgMTYxLjUgODQuMSAxNS4yLTIwIDEwMC4xLTUzLjYgMTY5LjMtODQuMSA2OS4yLTMwLjUgODYuNS02OS40IDg2LjUtOTEuOSAwLTIyLjUtMTguMS00MC42LTQwLjYtNDAuNnMtNDAuNiAxOC4xLTQwLjYgNDAuNmMwIDguMSAxLjYgMTUuNSA0LjMgMjIuMi0zLjEgMi4yLTYuNyAzLjUtMTAuNyAzLjUtMTMuOCAwLTI1LTExLjItMjUtMjVzMTEuMi0yNSAyNS0yNWM4LjEgMCAxNS41IDMuOSAyMC4yIDEwLjIgMTEuNy0xNS4yIDE4LjgtMzQuMiAxODgtNTUuMiAwLTQ1LjktMzcuMi04My4xLTgzLjEtODMuMXMtODMuMSAzNy4yLTgzLjEgODMuMWMwIDE2LjMgNC43IDMxLjUgMTIuOCA0NC4zLTEuMiAxLjEtMi42IDIuMS00LjEgMi45LTE0LjMgNy44LTI2IDE0LjktMzYuMiAyMC4yQzEwOS4zIDEyMS41IDQ3LjYgODguMSA0Ny42IDY1LjZzMTguMS00MC42IDQwLjYtNDAuNkMxMDkuMyAyNSA3NyA0My4xIDc3IDY1LjZzMzIuMyA0MC42IDMyLjMgNDAuNlMxNzAuMSAyNSA0Ny42IDI1eiIvPjwvc3ZnPg==" alt="heart">
+  <!-- AUDIO DE DNA DE BTS DE YOUTUBE EMBED OCULTO -->
+  <iframe id="audio-control" style="display:none" width="0" height="0" src="https://www.youtube.com/embed/MBdVXkSdhwU?autoplay=1&loop=1&playlist=MBdVXkSdhwU"></iframe>
+  <script>
+  // --- igual que tu código, solo cambiando el mensaje y el audio ---
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+  const colors = ['#ff69b4', '#ff1493', '#ffa07a', '#ffc0cb', '#db7093', '#ffb6c1', '#ffffe0', '#ffe4e1'];
+
+  // Reproduce el audio de YouTube cuando el usuario interactúa
+  document.addEventListener('DOMContentLoaded', function () {
+    function playAudio() {
+      const iframe = document.getElementById('audio-control');
+      // Para autoplay en móvil, forzamos display block (aunque sigue oculto)
+      iframe.style.display = 'block';
+      setTimeout(() => { iframe.style.display = 'none'; }, 500);
+    }
+    document.body.addEventListener(isTouchDevice ? 'touchstart' : 'click', function () {
+      playAudio();
+    });
+  });
+
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const cursor = document.getElementById('cursor');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  if (isTouchDevice) {
+    cursor.style.display = 'none';
+  } else {
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = `${e.clientX - 16}px`;
+      cursor.style.top = `${e.clientY - 16}px`;
+      cursor.style.transform = `scale(${1 + Math.sin(Date.now()/300)*0.05})`;
+    });
+
+    document.addEventListener('mousedown', () => {
+      cursor.style.transform = 'scale(0.8)';
+    });
+
+    document.addEventListener('mouseup', () => {
+      cursor.style.transform = 'scale
